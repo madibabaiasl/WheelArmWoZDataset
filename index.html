@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A Wizard-of-Oz Pilot Study.">
+  <meta name="keywords" content="Wheelchair-mounted robotic arm, Assistive Robotics, Data Collection, Teleoperation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://guangpingliu2024.github.io/">Guangping Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Nicholas Hawkins<sup>1</sup>,</span>
+            <span class="author-block">
+              Billy Madden<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/tipusultanen/home">Tipu Sultan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cs.slu.edu/~esposito/">Flavio Esposito</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://madibabaiasl.github.io/">Madi Babaiasl</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Saint Louis University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. 
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>-->
+              <!-- Video Link. 
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>-->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/madibabaiasl/WheelArmWoZDataset"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/madibabaiasl/WheelArmWoZDataset"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+       <img src="./static/images/overview.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+      <h2 class="subtitle has-text-centered">
+       Our assistive data collection framework captures 53 trials, including synchronized natural dialogue, wrist- and ego-centered cameras, and whole-body robot states, for 5 mobile assistive tasks in real-world settings using the Wizard-of-Oz (WoZ) method.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Integrated control of wheelchairs and wheelchair-mounted robotic arms (WMRAs) has strong potential to increase 
+            independence for users with severe motor limitations, yet existing interfaces often lack the flexibility needed for 
+            intuitive assistive interaction. Although data-driven AI methods show promise, progress is limited by the lack 
+            of multimodal datasets that capture natural Human–Robot Interaction (HRI), particularly conversational ambiguity in 
+            dialogue-driven control.
+          </p>
+          <p>
+            To address this gap, we propose <span class="dnerf">a multimodal data collection framework</span> that employs a dialogue-based 
+            interaction protocol and a two-room Wizard-of-Oz (WoZ) setup to simulate robot autonomy while eliciting 
+            natural user behavior.
+          </p>
+          <p>
+            The framework records five synchronized modalities: RGB-D video, 
+            conversational audio, inertial measurement unit (IMU) signals, end-effector Cartesian pose, and whole-body joint 
+            states across five assistive tasks. Using this framework, we collected a pilot dataset of 53 trials from five 
+            participants and validated its quality through motion smoothness analysis and user feedback. The results show that the 
+            framework effectively captures diverse ambiguity types and supports natural dialogue-driven interaction, demonstrating 
+            its suitability for scaling to a larger dataset for learning, benchmarking, and evaluation of ambiguity-aware assistive 
+            control. The dataset and codes will be released at https://github.com/madibabaiasl/WheelArmWoZDataset upon paper acceptance, 
+            and a demonstration video is available at Madi’s Note: video link.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Existing Multimodal Dataset Comparison</h2>
+    <figure class="has-text-centered">
+      <img src="./static/images/dataset_comparison.png"
+           alt="Dataset comparison"
+           style="display:block; margin:0 auto; max-width:100%; height:auto;">
+    </figure>
+    <p class="has-text-centered">
+      Prior datasets largely focus on multimodal manipulation or simulated dialogue interactions, but rarely provide real-world data that combines natural dialogue with both manipulation and navigation tasks.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+
+    <!-- Subsection 1 -->
+    <h3 class="title is-4">Task Demonstrations</h3>
+    <p>
+      The qualitative analysis presents videos and conversations from a sample of each task to assess video quality, WheelArm motions, and dialogue between the participants and WheelArm. The figure below demonstrates high-quality multimodal data collected by our framework.
+    </p>
+    <figure class="has-text-centered">
+      <img src="./static/images/task_demonstration.png"
+           alt="Two camera streams"
+           style="display:block; margin:0 auto; max-width:100%; height:auto;">
+    </figure>
+
+    <!-- Subsection 2 -->
+    <h3 class="title is-4">General Information and Motion Analysis</h3>
+    <p>
+      Distribution of data across tasks, time duration, end-effector path length, and jerk analysis of the wheelchair and end-effector movement.
+    </p>
+    <figure class="has-text-centered">
+      <img src="./static/images/general_information&motion_analysis.png"
+           alt="General information and motion analysis"
+           style="display:block; margin:0 auto; max-width:100%; height:auto;">
+    </figure>
+
+    <!-- Subsection 3 -->
+    <h3 class="title is-4">Dialogue Analysis</h3>
+    <p>
+      We analyze the task distribution by ambiguity type, utterance counts, and ambiguity distribution.
+    </p>
+    <figure class="has-text-centered">
+      <img src="./static/images/dialogue_analysis.png"
+           alt="Dialogue analysis"
+           style="display:block; margin:0 auto; max-width:100%; height:auto;">
+    </figure>
+
+    <!-- Subsection 4 -->
+    <h3 class="title is-4">Questionnaire Analysis</h3>
+    <p>
+      The Likert-scale tables summarize user feedback on the dialogue-based interaction and WheelArm autonomy.
+    </p>
+    <figure class="has-text-centered">
+      <img src="./static/images/questionnaire_analysis.png"
+           alt="Questionnaire analysis"
+           style="display:block; margin:0 auto; max-width:100%; height:auto;">
+    </figure>
+
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{liu2026biorob,
+  author    = {Liu, Guangping and Hawkins, Nicholas and Madden, Billy and Sultan, Tipu and Esposito, Flavio and Babaiasl, Madi},
+  title     = {A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study},
+  journal   = {BioRob},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website code was borrowed from the Nerfies paper <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
