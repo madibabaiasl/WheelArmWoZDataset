@@ -1,0 +1,54 @@
+export CYCLONEDDS_URI=file://$HOME/cyclonedds_ros2.xml
+
+ros2 launch depthai_ros_driver camera.launch.py
+
+# Step 1: Launch the camera to the headset for teleoperation
+conda activate openteach
+cd ~/Documents/WheelArm_Teleoperation/Open-Teach
+./stop_pid.sh
+bash launch_server_oak.sh
+
+# Step 2: Launch the kinova gen3 moveit, end-effector pose publisher, kinova vision and republishment
+source /opt/ros/humble/setup.bash
+cd ~/workspace/ros2_kortex_ws
+source install/setup.bash
+ros2 launch kinova_gen3_6dof_robotiq_2f_85_moveit_config robot.launch.py   robot_ip:=192.168.1.10
+
+conda deactivate
+source /opt/ros/humble/setup.bash
+cd ~/workspace/ros2_kortex_ws
+source install/setup.bash
+cd /home/guangping/workspace/ros2_kortex_ws/src/ros2_kortex/kortex_bringup/kortex_bringup
+python3 ee_pose_publisher.py
+
+cd ~/workspace/kinova_vision_ws
+source install/setup.bash
+ros2 launch kinova_vision kinova_vision.launch.py 
+
+conda activate openteach
+cd ~/Documents/WheelArm_Teleoperation/Open-Teach
+python3 ros_cam_to_zmq.py
+
+# Step 3: Launch the wheelchair
+conda deactivate
+cd ~/workspace/whill_ws
+source install/setup.bash
+sudo chmod a+rw /dev/ttyUSB0
+ros2 launch whill_bringup whill_launch.py
+
+# Step 4: Launch the IMU
+cd ~/workspace/imu_ws
+source install/setup.bash
+ros2 run bno055_uart imu_node
+
+# Step 5: Launch teleoperation and data collection
+conda activate openteach
+cd ~/Documents/WheelArm_Teleoperation/Open-Teach
+python teleop.py robot=kinova_gen3
+
+conda activate openteach
+cd ~/Documents/WheelArm_Teleoperation/Open-Teach
+source ~/workspace/whill_ws/install/setup.bash
+python data_collection_GUI.py robot=kinova_gen3 demo_num=1
+
+
