@@ -1,0 +1,30 @@
+defaults:
+  - _self_
+  - camera
+  - network
+  - robot: xela_hand_franka
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled 
+
+storage_path: extracted_data/
+demo_num: 271
+sim_env: false
+is_xela: false
+host: ${host_address}
+
+audio:
+  # Headset UDP → WAV
+  record_headset: true
+  headset_port: 50010        # must match your Quest sender port
+  header_skip: 0             # set 8 if you prepend an 8-byte header
+
+  # Laptop Mic → WAV
+  record_laptop_mic: true
+  laptop_samplerate: 16000
+  laptop_channels: 1
+  laptop_device: null        # use default input, or set index/name
+
+hydra:  
+  output_subdir: null  
+  run:  
+    dir: .
