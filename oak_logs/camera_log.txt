@@ -1,0 +1,85 @@
+[INFO] [1765569030.585394536] [oak_ros_bridge_1]: OAK bridge subscribing to:
+  - /oak/rgb/image_raw/compressed
+  - /oak/stereo/image_raw/compressedDepth
+  - /oak/stereo/camera_info
+and bridging to ZMQ 10.178.47.85:10005
+[INFO] [1765569049.602289083] [oak_ros_bridge_1]: OAK intrinsics matrix set to:
+[[759.2163    0.      638.4801 ]
+ [  0.      759.2163  345.87714]
+ [  0.        0.        1.     ]]
+Traceback (most recent call last):
+  File "/home/guangping/Documents/WheelArm_Teleoperation/Open-Teach/wide_range_robot_camera.py", line 16, in <module>
+    main()
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/home/guangping/Documents/WheelArm_Teleoperation/Open-Teach/wide_range_robot_camera.py", line 13, in main
+    process.join()
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+Exception ignored in atexit callback: <function _exit_function at 0x73187fc28160>
+Traceback (most recent call last):
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/util.py", line 357, in _exit_function
+    p.join()
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt: 
+Process Process-1:
+Traceback (most recent call last):
+  File "/home/guangping/Documents/WheelArm_Teleoperation/Open-Teach/openteach/components/sensors/oak.py", line 254, in stream
+    rclpy.spin(bridge_node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+    wait_set.wait(timeout_nsec)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/guangping/miniconda3/envs/openteach/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/guangping/Documents/WheelArm_Teleoperation/Open-Teach/openteach/components/initializers.py", line 78, in _start_component
+    component.stream()
+  File "/home/guangping/Documents/WheelArm_Teleoperation/Open-Teach/openteach/components/sensors/oak.py", line 257, in stream
+    bridge_node.destroy_node()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1697, in destroy_node
+    self.__node.destroy_when_not_in_use()
+KeyboardInterrupt
+tcp://10.178.47.85:10005
+tcp://10.178.47.85:11005
+
+***************************************************************
+     Starting oak component
+***************************************************************
+Starting OAK ROS bridge on 10.178.47.85:10005...
+Starting OAK oculus stream on port: 10505
+Shutting down OAK bridge for camera 1.

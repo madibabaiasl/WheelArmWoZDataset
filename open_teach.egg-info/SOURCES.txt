@@ -1,0 +1,7 @@
+LICENSE
+README.md
+setup.py
+open_teach.egg-info/PKG-INFO
+open_teach.egg-info/SOURCES.txt
+open_teach.egg-info/dependency_links.txt
+open_teach.egg-info/top_level.txt
