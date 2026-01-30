@@ -1,0 +1,8 @@
+In resting test, I found:
+1. There is no big jump of hand tracking from checking the consistency of the delta_T_h.
+2. Headset movement will affect the hand pose detection.
+3. The robot rotated in a small angle if I nod or see up.
+4. The robot won't move if i stay still.
+
+Note: Heahset should try to not move in teleoperation.
+
