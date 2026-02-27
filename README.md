@@ -8,6 +8,13 @@ Welcome to the WheelArm Multimodel Dataset for the wheelchair and wheelchair-mou
 ![Overview](assests/overview.png)
 
 ## Getting Started!
+### Hardware 
+Two laptops: Precision 5570 and 7780
+Kinova Gen3 robotic Arm
+Whill Model CR2 wheelchair
+Luxion OAK-D W canmera
+A battery box for Kinova movable power(please email guangping.liu@slu.edu if you need more info)
+
 ### Environment Setup
 Download the repo to your local directory.
 ```
@@ -19,13 +26,44 @@ conda env create -f environment.yml
 pip install -e .
 ```
 ### ROS2 Packages Setup
-Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex)
-Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill)
-Luxion OAK-D W: [vision](https://docs.luxonis.com/software-v3/depthai/ros/)
+Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex) <br>
+Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill) <br>
+Luxion OAK-D W: [vision](https://docs.luxonis.com/software-v3/depthai/ros/) <br>
 
 ### Program Setup
+We set up the program running on two laptops, laptop A (5570;10.0.0.1) and laptop B(7780;10.0.0.2). Please build the environment on both laptops.
+Laptop A runs the teleoperation and data collection framework, while laptop B executes the wheelchair and robotic arm.
 
 ### Launch
+Step 1: On laptop B:
+```
+# launch wheelchair
+export CYCLONEDDS_URI=file://$HOME/cyclonedds_ros2.xml
+cd /whill/ros/package/path
+source install/setup.bash
+sudo chmod a+rw /dev/ttyUSB0
+ros2 launch whill_bringup whill_launch.py
+
+# launch the robotic arm
+source /opt/ros/humble/setup.bash
+cd /kinova/path/
+source install/setup.bash
+ros2 launch kinova_gen3_6dof_robotiq_2f_85_moveit_config robot.launch.py   robot_ip:=192.168.1.10
+
+# launch the kinova vision
+cd /kinova/vision/path/
+source install/setup.bash
+ros2 launch kinova_vision kinova_vision.launch.py
+
+# launch the execution server
+
+```
+Step 2: On laptop A
+```
+# launch the camera
+ros2 launch depthai_ros_driver camera.launch.py
+
+# launch the in
 
 ## Dataset
 
