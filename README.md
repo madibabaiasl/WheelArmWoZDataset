@@ -18,8 +18,10 @@ Build your conda environment.
 conda env create -f environment.yml
 pip install -e .
 ```
-
 ### ROS2 Packages Setup
+Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex)
+Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill)
+Luxion OAK-D W: [vision](https://docs.luxonis.com/software-v3/depthai/ros/)
 
 ### Program Setup
 
