@@ -11,8 +11,9 @@ Welcome to the WheelArm Multimodel Dataset for the wheelchair and wheelchair-mou
 ### Environment Setup
 Download the repo to your local directory.
 ```
-git clone
+git clone https://github.com/madibabaiasl/WheelArmWoZDataset.git
 ```
+Build your conda environment.
 ```
 conda env create -f environment.yml
 pip install -e .
