@@ -60,8 +60,14 @@ ros2 launch kinova_vision kinova_vision.launch.py
 ```
 Step 2: On laptop A
 ```
-# launch the camera
+# launch the OAK-D
 ros2 launch depthai_ros_driver camera.launch.py
+
+# conda activate openteach
+cd /open/teach/path/
+./stop_pid.sh
+bash launch_server_oak.sh
+```
 
 # launch the in
 
