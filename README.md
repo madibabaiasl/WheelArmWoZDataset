@@ -9,6 +9,14 @@ Welcome to the WheelArm Multimodel Dataset for the wheelchair and wheelchair-mou
 
 ## Getting Started!
 ### Environment Setup
+Download the repo to your local directory.
+```
+git clone
+```
+```
+conda env create -f environment.yml
+pip install -e .
+```
 
 ### ROS2 Packages Setup
 
