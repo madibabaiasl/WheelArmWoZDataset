@@ -1,19 +1,21 @@
 # A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study
-Authors: Guangping Liu, Nicholas Hawkins, Tipu Sultan, Flavio Esposito, Madi Babaiasl
+**Authors**: Guangping Liu, Nicholas Hawkins, Tipu Sultan, Flavio Esposito, Madi Babaiasl
 
-Page: [project](https://madibabaiasl.github.io/WheelArmWoZDataset/) | Paper: [arxiv](https://arxiv.org/abs/2601.16870) | Code: [github](https://github.com/madibabaiasl/WheelArmWoZDataset) | Dataset: will be published soon
-
-Welcome to the WheelArm Multimodel Dataset for the wheelchair and wheelchair-mounted robotic arm! In this research, we developed a real-time teleoperation and data collection framework using Wizard-of-Oz tailored for the Kinova Gen3 robotic arm and Whill Model CR2 wheelchair. Our work is developed on [OpenTeach](https://github.com/aadhithya14/Open-Teach) by customizing the Unity application, expanding the manipulation to navigation, and simplifying the hand detection to controller tracking. We propose a multimodal data collection framework that employs a dialogue-based interaction protocol and a two-room Wizard-of-Oz (WoZ) setup to simulate robot autonomy while eliciting natural user behavior. The framework records five synchronized modalities: RGB-D video, conversational audio, inertial measurement unit (IMU) signals, end-effector Cartesian pose, and whole-body joint states across five assistive tasks. Using this framework, we collected a pilot dataset of 53 trials from five participants and validated its quality through motion smoothness analysis and user feedback. The results show that the framework effectively captures diverse ambiguity types and supports natural dialogue-driven interaction, demonstrating its suitability for scaling to a larger dataset for learning, benchmarking, and evaluation of ambiguity-aware assistive control.
-
+**Page**: [project](https://madibabaiasl.github.io/WheelArmWoZDataset/) | **Paper**: [arxiv](https://arxiv.org/abs/2601.16870) | **Code**: [github](https://github.com/madibabaiasl/WheelArmWoZDataset) | **Dataset**: will be published soon
 ![Overview](assests/overview.png)
+
+## News
+**[05/11/2026]** We have upgraded our program on a ***Jetson AGX Orin*** and a ***laptop***. Please follow the instructions in the branch of WheelArm_Tele_v2. <br>
+**[04/20/2026]** Our paper has been accepted by ***IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob 2026)***. <br>
+**[01/01/2026]** Our main branch is for WheelArm_Tele implementation for ***two laptops***. <br>
 
 ## Getting Started!
 ### Hardware 
-Two laptops: Precision 5570 and 7780
-Kinova Gen3 robotic Arm
-Whill Model CR2 wheelchair
-Luxion OAK-D W canmera
-A battery box for Kinova movable power(please email guangping.liu@slu.edu if you need more info)
+- Two laptops: Precision 5570 and 7780 <br>
+- Kinova Gen3 robotic Arm <br>
+- Whill Model CR2 wheelchair <br>
+- Luxion OAK-D W canmera <br>
+- A battery box for Kinova movable power(please email guangping.liu@slu.edu if you need more info)
 
 ### Environment Setup
 Download the repo to your local directory.
@@ -119,9 +121,9 @@ Pilot dataset is available:
 This repository is released under the License in this repo.
 
 ## Citation
-@article{liu2026multimodal,
-  title={A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study},
-  author={Liu, Guangping and Hawkins, Nicholas and Madden, Billy and Sultan, Tipu and Esposito, Flavio and Babaiasl, Madi},
-  journal={arXiv preprint arXiv:2601.16870},
-  year={2026}
+@article{liu2026multimodal,<br>
+  title={A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study},<br>
+  author={Liu, Guangping and Hawkins, Nicholas and Madden, Billy and Sultan, Tipu and Esposito, Flavio and Babaiasl, Madi},<br>
+  journal={arXiv preprint arXiv:2601.16870},<br>
+  year={2026}<br>
 }
