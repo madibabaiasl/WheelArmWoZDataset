@@ -10,12 +10,43 @@
 **[01/01/2026]** Our main branch is for WheelArm_Tele implementation for ***two laptops***. <br>
 
 ## Getting Started!
-### Hardware 
+### Hardware List
 - Two laptops: Precision 5570 and 7780 <br>
 - Kinova Gen3 robotic Arm <br>
 - Whill Model CR2 wheelchair <br>
-- Luxion OAK-D W canmera <br>
-- A battery box for Kinova movable power(please email guangping.liu@slu.edu if you need more info)
+- Luxion OAK-D W camera <br>
+- A battery box for Kinova movable power <br>
+- Two microphones <br>
+- Three headphones<br>
+### Hardware Setup
+WheelArm Setup:
+<table>
+  <tr>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/82d1e152-cc04-465b-929f-1ba6ca96dd8e" width="100%"/>
+    </td>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/b38ea148-c5ce-4e60-ab2d-5bc174d8e427" width="100%"/>
+    </td>
+  </tr>
+</table>
+(Please email guangping.liu@slu.edu if you need more info about the portable battery box for Kinova Gen3 charging.) <br>
+
+Hardware connected to laptop A: <br>
+- Luxion OAK-D W camera <br>
+- A collar microphone <br>
+
+Hardware connected to laptop B: <br>
+- Kinova Gen3 robotic Arm <br>
+- Whill Model CR2 wheelchair <br>
+
+The laptop A and B are connected through an Ethernet cable.
+<img width="809" height="568" alt="laptopAB" src="https://github.com/user-attachments/assets/84281f16-ea0b-440b-a566-856d4f8d30f3" style="width: 50%; display: inline-block; margin-right: 8%;"/>
+
+### Wizard-of-Oz
+<img width="1158" height="561" alt="woz" src="https://github.com/user-attachments/assets/1640ec2e-5c0c-4ad4-b696-3801b15a721a" />
+
+Besides remote teleoperation, another important aspect of Wizard-of-Oz is the use of a real-time voice changer model. We use [w-okada](https://github.com/w-okada/voice-changer/tree/master) to convert the teleoperator's voice to *robot voice*. Additionally, the teleoperator, Researcher A, and the participants should be in the same Zoom room with three devices. In our setting, the participants were provided with earphones to hear the teleoperator's changed voice and talk. The teleoperator and Research A used two workstations to join the Zoom.
 
 ### Environment Setup
 Download the repo to your local directory.
@@ -95,7 +126,7 @@ Step 3: Install WheelArm.apk to Meta Quest VR Headset (Make sure your Meta Quest
 cd /proj/path/VR
 adb devices
 ```
-Allow USB connection in the VR Headset
+Select *Allow* in the pop-up of the USB connection request in the VR Headset.
 ```
 adb install WheelArm.apk
 ```
