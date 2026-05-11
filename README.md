@@ -116,6 +116,7 @@ python data_collection_GUI.py robot=kinova_gen3 demo_num=1
 Pilot dataset is available: 
 
 ## License
+This repository is released under this License: 
 
 ## Citation
 @article{liu2026multimodal,
