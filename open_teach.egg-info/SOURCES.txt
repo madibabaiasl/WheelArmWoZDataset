@@ -1,4 +1,3 @@
-LICENSE
 README.md
 setup.py
 open_teach.egg-info/PKG-INFO

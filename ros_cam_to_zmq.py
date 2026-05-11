@@ -25,7 +25,7 @@ DEPTH_INFO_PORT  = info_port_offset + ros_arm_cam_number + DEPTH_PORT_OFFSET
 
 
 class RosToZmq(Node):
-    def __init__(self, host, rgb_port, depth_port, rgb_info_port, depth_info_port,
+    def __init__(self, host, device_router_add, rgb_port, depth_port, rgb_info_port, depth_info_port,
                  rgb_topic, depth_topic, rgb_info_topic, depth_info_topic, rgb_jpeg_port=None, jpeg_quality=80, republish_info_hz=1.0):
         super().__init__('ros_cam_to_zmq')
 
@@ -104,7 +104,6 @@ class RosToZmq(Node):
         self.sock_d_info.send(self._depth_info_json)
 
     def cb_rgb(self, msg: Image):
-        print(f"RGB image received {msg}")
         ts_ros, ts_host = self._ts_pair(msg.header)
         enc = msg.encoding
          
@@ -122,7 +121,7 @@ class RosToZmq(Node):
 
         if self.sock_rgb_jpeg is not None:
             if self.bridge is None and enc in ('bgr8','rgb8'):
-                arr = np.frombuffer(payload, dtype=np.uint8),reshape(h, step//3, 3)
+                arr = np.frombuffer(payload, dtype=np.uint8).reshape(h, step//3, 3)
                 if enc == 'rgb8':
                     arr = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
             else:
@@ -134,7 +133,6 @@ class RosToZmq(Node):
                         arr = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
             ok, buf = cv2.imencode(".jpg", arr, [int(cv2.IMWRITE_JPEG_QUALITY), self.jpeg_quality])
             if ok:
-                print(f"[RosToZmq] ok is {ok}")
                 jpg = buf.tobytes()
                 header_jpeg = json.dumps(dict(enc='jpeg', h=h, w=w, ts_ros=ts_ros, ts_host=ts_host)).encode('ascii')
                 self.sock_rgb_jpeg.send_multipart([b'RGB_JPEG', header_jpeg, jpg], copy=False)
@@ -207,7 +205,6 @@ class RosToZmq(Node):
             self.get_logger().warn(f"JPEG publish failed: {e}")
 
     def cb_depth(self, msg: Image):
-        # print(f"Depth image received {msg}")
         ts_ros, ts_host = self._ts_pair(msg.header)
         header = json.dumps(dict(enc=msg.encoding, h=msg.height, w=msg.width, step=msg.step,
                                  ts_ros=ts_ros, ts_host=ts_host)).encode('ascii')
@@ -216,6 +213,7 @@ class RosToZmq(Node):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--host', default='0.0.0.0')
+    ap.add_argument('--device_router_add', default='10.0.0.2')
     ap.add_argument('--rgb-port', type=int, default=RGB_PORT)
     ap.add_argument('--depth-port', type=int, default=DEPTH_PORT)
     ap.add_argument('--rgb-info-port', type=int, default=RGB_INFO_PORT)
@@ -230,7 +228,7 @@ def main():
     args = ap.parse_args()
 
     rclpy.init()
-    node = RosToZmq(args.host, args.rgb_port, args.depth_port, args.rgb_info_port, args.depth_info_port,
+    node = RosToZmq(args.host, args.device_router_add, args.rgb_port, args.depth_port, args.rgb_info_port, args.depth_info_port,
                     args.rgb_topic, args.depth_topic, args.rgb_info_topic, args.depth_info_topic,
                     args.rgb_jpeg_port, args.jpeg_quality,
                     republish_info_hz=args.republish_info_hz)

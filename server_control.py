@@ -71,8 +71,8 @@ def main(bind_addr="tcp://0.0.0.0:5555"):
                 fn = dispatch.get(cmd)
                 if not fn:
                     raise ValueError(f"Unknown cmd: {cmd}")
-                result = fn(args, kwargs)
-                resp = resp = {
+                # result = fn(args, kwargs)
+                resp = {
                     "ok": True,
                     "result": {
                     "reached": bool(getattr(msg, "reached_goal", False)),

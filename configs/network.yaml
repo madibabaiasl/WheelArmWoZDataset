@@ -1,5 +1,4 @@
-host_address: '10.178.47.85'
-#host_address: '192.168.1.252'
+host_address: '192.168.0.95'
 left_xarm_ip: '192.168.86.216'
 right_xarm_ip: '192.168.86.230'
 

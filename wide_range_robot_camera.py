@@ -6,11 +6,26 @@ def main(configs):
     oak_mgr = OakCameras(configs)
     processes = oak_mgr.get_processes()
 
-    for process in processes:
-        process.start()
+    try:
+        for process in processes:
+            process.start()
 
-    for process in processes:
-        process.join()
+        for process in processes:
+            process.join()
+    except KeyboardInterrupt:
+        print("[OakCameras] Stopping child processes...")
+        for process in processes:
+            if process.is_alive():
+                process.terminate()
+
+        for process in processes:
+            if process.is_alive():
+                process.join(timeout=2)
+
+        for process in processes:
+            if process.is_alive():
+                process.kill()
+
 
 if __name__ == '__main__':
     main()
