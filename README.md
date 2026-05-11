@@ -10,8 +10,11 @@
 **[01/01/2026]** Our main branch is for WheelArm_Tele implementation for ***two laptops***. <br>
 
 ## Getting Started!
+We upgraded our hardware architecture to a Jetson-laptop pair to better manage high computational loads. Distributing the teleoperation and data collection tasks across separate units allowed for a more efficient framework, resulting in higher control frequencies and minimized latency in the vision pipeline.
+
 ### Hardware List
-- Two laptops: Precision 5570 and 7780 <br>
+- Edge Device: Nvidia Jetson AGX Orin <br>
+- Laptops: Precision 7780 <br>
 - Kinova Gen3 robotic Arm <br>
 - Whill Model CR2 wheelchair <br>
 - Luxion OAK-D W camera <br>
@@ -19,41 +22,24 @@
 - Two microphones <br>
 - Three headphones<br>
 ### Hardware Setup
-WheelArm Setup:
-<table>
-  <tr>
-    <td width="50%">
-      <img src="https://github.com/user-attachments/assets/82d1e152-cc04-465b-929f-1ba6ca96dd8e" width="100%"/>
-    </td>
-    <td width="50%">
-      <img src="https://github.com/user-attachments/assets/b38ea148-c5ce-4e60-ab2d-5bc174d8e427" width="100%"/>
-    </td>
-  </tr>
-</table>
-(Please email guangping.liu@slu.edu if you need more info about the portable battery box for Kinova Gen3 charging.) <br>
+<img width="2080" height="964" alt="jetsonLaptop" src="https://github.com/user-attachments/assets/dc56aa99-4e22-41c9-be09-08d33dbcdc15" />
 
 Hardware connected to laptop A: <br>
 - Luxion OAK-D W camera <br>
-- A collar microphone <br>
 
-Hardware connected to laptop B: <br>
+Hardware connected to Jetson: <br>
+- A collar microphone <br>
 - Kinova Gen3 robotic Arm <br>
 - Whill Model CR2 wheelchair <br>
 
-The laptop A and B are connected through an Ethernet cable.
-<img width="809" height="568" alt="laptopAB" src="https://github.com/user-attachments/assets/84281f16-ea0b-440b-a566-856d4f8d30f3" style="width: 50%; display: inline-block; margin-right: 8%;"/>
-
-### Wizard-of-Oz
-<img width="1158" height="561" alt="woz" src="https://github.com/user-attachments/assets/1640ec2e-5c0c-4ad4-b696-3801b15a721a" />
-
-Besides remote teleoperation, another important aspect of Wizard-of-Oz is the use of a real-time voice changer model. We use [w-okada](https://github.com/w-okada/voice-changer/tree/master) to convert the teleoperator's voice to *robot voice*. Additionally, the teleoperator, Researcher A, and the participants should be in the same Zoom room with three devices. In our setting, the participants were provided with earphones to hear the teleoperator's changed voice and talk. The teleoperator and Research A used two workstations to join the Zoom.
+The laptop A and Jetson are connected through an Ethernet cable.
 
 ### Environment Setup
 Download the repo to your local directory.
 ```
 git clone https://github.com/madibabaiasl/WheelArmWoZDataset.git
 ```
-Build your conda environment.
+Build your conda environment on both devices.
 ```
 conda env create -f environment.yml
 pip install -e .
@@ -61,65 +47,35 @@ conda activate openteach
 sudo apt install libportaudio2 libsndfile1 ros-humble-tf-transformations
 pip install transforms3d
 ```
+### Network
+Kinova Gen3 IP Address: 192.168.1.10 <br>
+Laptop A: 10.0.0.1 <br>
+Jetson: 10.0.0.2 <br>
+Jetson and Laptop are synchronized using cyclone DDS. Please find the Ethernet interface on both devices using:
+```
+ip address
+```
+Then fill your interface to cyclonedds_ros2.xml
+
 ### ROS2 Packages Setup
-Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex) <br>
-Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill) <br>
-Luxion OAK-D W: [vision](https://docs.luxonis.com/software-v3/depthai/ros/) <br>
+Jetson:<br>
+- Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex) <br>
+- Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill) <br>
+
+Laptop:<br>
+- Luxion OAK-D W: [vision](https://docs.luxonis.com/software-v3/depthai/ros/) <br>
 
 ### Program Setup
-We set up the program running on two laptops, laptop A (5570;10.0.0.1) and laptop B(7780;10.0.0.2). Please build the environment on both laptops.
-Laptop A runs the teleoperation and data collection framework, while laptop B executes the wheelchair and robotic arm.
+In this version, we route VR commands from the laptop to Jetson, so the data collection pipeline and teleoperation pipeline can be separated into two devices. With the upgraded framework, the Jetson handles robot execution and real-time data collection, while the laptop computes the end-effector twist and processes and uploads camera streams.
 
 ### Launch
-Step 1: On laptop B:
+Step 1: On Jetson:
 ```
-# launch wheelchair
-export CYCLONEDDS_URI=file://$PROJ_DIR/cyclonedds_ros2.xml
-cd /whill/ros/package/path
-source install/setup.bash
-sudo chmod a+rw /dev/ttyUSB0
-ros2 launch whill_bringup whill_launch.py
-
-# launch the robotic arm
-source /opt/ros/humble/setup.bash
-cd /kinova/path/
-source install/setup.bash
-ros2 launch kinova_gen3_6dof_robotiq_2f_85_moveit_config robot.launch.py   robot_ip:=192.168.1.10
-
-# launch the kinova vision
-cd /kinova/vision/path/
-source install/setup.bash
-ros2 launch kinova_vision kinova_vision.launch.py
-
-# launch the execution server
-conda activate openteach
-cd $PROJ_DIR
-source ~/workspace/whill_ws/install/setup.bash
-python3 server_control.py
-
+./seperate_jetson.sh
 ```
 Step 2: On laptop A
 ```
-# launch the OAK-D
-ros2 launch depthai_ros_driver camera.launch.py
-
-# launch the monitors in VR headsets
-conda activate openteach
-cd /proj/path
-./stop_pid.sh
-bash launch_server_oak.sh
-
-# calculate the end effector cartesian pose
-source /opt/ros/humble/setup.bash
-cd ~/workspace/ros2_kortex_ws
-source install/setup.bash
-cd /kinova/path/src/ros2_kortex/kortex_bringup/kortex_bringup
-python3 ee_pose_publisher.py
-
-# send kinova vision to VR headset
-conda activate openteach
-cd /proj/path/
-python3 ros_cam_to_zmq.py
+./seperate_laptop.sh
 ```
 Step 3: Install WheelArm.apk to Meta Quest VR Headset (Make sure your Meta Quest is in developer mode before this step)
 ```
@@ -132,18 +88,13 @@ adb install WheelArm.apk
 ```
 Launch the software WheelArm after installing. Change the host IP to your network address to ensure the VR headset, laptop A, and laptop B are on the same network. Input the host IP after clicking the Steam button in the WheelArm software.
 
-Step 4: After launching the WheelArm successfully, launch teleoperation and data collection
+Step 4: After launching the WheelArm successfully, launch data collection on Jetson
 ```
-# start teleoperation
-conda activate openteach
-cd /proj/path/
-python teleop.py robot=kinova_gen3
-
-# start data collection
-conda activate openteach
-cd /proj/path/
-source /whill/ros/package/path/install/setup.bash
-python data_collection_GUI.py robot=kinova_gen3 demo_num=1
+./collection.sh
+```
+Step 5: Launch teleoperation on the laptop
+```
+./teleop.sh
 ```
 ## Dataset
 Pilot dataset is available: 
