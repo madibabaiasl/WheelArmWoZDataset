@@ -1,7 +1,7 @@
 # A Multimodal Data Collection Framework for Dialogue-Driven Assistive Robotics to Clarify Ambiguities: A Wizard-of-Oz Pilot Study
 **Authors**: Guangping Liu, Nicholas Hawkins, Tipu Sultan, Flavio Esposito, Madi Babaiasl
 
-**Page**: [project](https://madibabaiasl.github.io/WheelArmWoZDataset/) | **Paper**: [arxiv](https://arxiv.org/abs/2601.16870) | **Code**: [github](https://github.com/madibabaiasl/WheelArmWoZDataset) | **Dataset**: will be published soon
+**Page**: [project](https://madibabaiasl.github.io/WheelArmWoZDataset/) | **Paper**: [arxiv](https://arxiv.org/abs/2601.16870) | **Code**: [github](https://github.com/madibabaiasl/WheelArmWoZDataset) | **Dataset**: [hugging face](https://huggingface.co/datasets/Cordelia/WheelArm_WoZ_Pilot_Dataset)
 ![Overview](assests/overview.png)
 
 ## News
@@ -146,7 +146,7 @@ source /whill/ros/package/path/install/setup.bash
 python data_collection_GUI.py robot=kinova_gen3 demo_num=1
 ```
 ## Dataset
-Pilot dataset is available: 
+Pilot dataset is available: https://huggingface.co/datasets/Cordelia/WheelArm_WoZ_Pilot_Dataset
 
 ## License
 This repository is released under the License in this repo.
