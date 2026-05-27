@@ -10,6 +10,7 @@ from openteach.constants import CAM_FPS, IMAGE_RECORD_RESOLUTION, DEPTH_RECORD_F
 from openteach.utils.files import store_pickle_data
 from openteach.utils.timer import FrequencyTimer
 
+# This is updated after the Biorob paper; it was 15 fps, making it accelerated. But the video speed was correct in the post data processing. Please use 30 for normal speed.
 CAM3_FPS = 30
 # --- camera_info helpers (ZMQ SUB, non-blocking) ---
 def _make_info_sub(host: str, port: int | None):
