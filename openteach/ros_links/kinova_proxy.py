@@ -6,7 +6,7 @@ class KinovaGen3Controller:
     Proxy with the SAME method names as the real controller on A.
     Calls are sent over ZeroMQ to the server on laptop A.
     """
-    def __init__(self, server_addr=f"tcp://{DEVICE_A_IP}:5555", node_name="gen3_remote_client"):
+    def __init__(self, server_addr=f"tcp://{DEVICE_B_IP}:5555", node_name="gen3_remote_client"):
         self.ctx = zmq.Context.instance()
         self.sock = self.ctx.socket(zmq.REQ)
         self.sock.connect(server_addr)
