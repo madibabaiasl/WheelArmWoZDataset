@@ -61,6 +61,15 @@ conda activate openteach
 sudo apt install libportaudio2 libsndfile1 ros-humble-tf-transformations
 pip install transforms3d
 ```
+
+### Ethernet Connection
+1. Connect two devices by Ethernet, set the address of one to 10.0.0.1 and the other to 10.0.0.2.
+2. Find the Ethernet interfaces using the code:
+```
+ip address
+```
+3. Change the interfaces in cyclonedds_ros2.xml of both devices.
+
 ### ROS2 Packages Setup
 Kinova Gen3 6-DOF Arm: [Kinova ROS2 Control Humble](https://github.com/Kinovarobotics/ros2_kortex) <br>
 Whill Model CR2: [WHILL MODEL](https://github.com/whill-labs/ros2_whill) <br>
